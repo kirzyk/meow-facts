@@ -2,7 +2,6 @@
   <img ngSrc="assets/images/logo.png" alt="MeowFacts" width="260" height="260" priority />
   <p-card styleClass="p-4" class="login-card">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <p *ngIf="errorMessage" class="p-error mb-3">{{ errorMessage }}</p>
       <div class="field p-fluid mb-4">
         <p-floatlabel>
           <input id="login" pInputText formControlName="login" style="width: 100%" />
@@ -42,7 +41,6 @@
         <p-button label="Create Account" type="submit" [disabled]="registerForm.invalid" [loading]="registerLoading"
           styleClass="w-full" severity="primary" />
       </form>
-      <p *ngIf="errorMessage" class="p-error mb-3">{{ errorMessage }}</p>
     </div>
   </p-dialog>
 </div>

@@ -39,9 +39,10 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   public registerForm!: FormGroup;
   public showRegisterDialog = false;
-  public errorMessage: string | null = null;
   public loginLoading = false;
   public registerLoading = false;
+  public loginErrorMessage: string | null = null;
+  public registerErrorMessage: string | null = null;
 
   constructor(
     private readonly forbBuilder: FormBuilder,
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loginForm = this.forbBuilder.group({
-      login: ['', Validators.required],
+      login: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
     this.registerForm = this.forbBuilder.group({
@@ -70,17 +71,17 @@ export class LoginComponent implements OnInit {
         .pipe(take(1))
         .subscribe({
           next: (user) => {
-            this.errorMessage = null;
+            this.loginErrorMessage = null;
             this.loginLoading = false;
             this.router.navigate(['home']);
           },
           error: (err) => {
-            this.errorMessage = err.message || 'Login failed';
+            this.loginErrorMessage = err.message || 'Login failed';
             this.loginLoading = false;
             this.messageService.add({
               severity: 'error',
               summary: 'Login Failed',
-              detail: this.errorMessage || 'Please try again.',
+              detail: this.loginErrorMessage || 'Please try again.',
               life: 3000,
             });
           },
@@ -97,7 +98,7 @@ export class LoginComponent implements OnInit {
         .pipe(take(1))
         .subscribe({
           next: (user) => {
-            this.errorMessage = null;
+            this.registerErrorMessage = null;
             this.showRegisterDialog = false;
             this.registerForm.reset();
             this.registerLoading = false;
@@ -109,8 +110,14 @@ export class LoginComponent implements OnInit {
             });
           },
           error: (err) => {
-            this.errorMessage = err.message || 'Registration failed';
+            this.registerErrorMessage = err.message || 'Registration failed';
             this.registerLoading = false;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Registration Failed',
+              detail: this.registerErrorMessage || 'Please try again.',
+              life: 3000,
+            });
           },
         });
     }
@@ -122,5 +129,7 @@ export class LoginComponent implements OnInit {
 
   public closeRegisterDialog() {
     this.showRegisterDialog = false;
+    this.registerForm.reset();
+    this.registerErrorMessage = null;
   }
 }

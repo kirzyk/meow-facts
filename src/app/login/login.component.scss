@@ -33,3 +33,9 @@
   background: $main-background-hover !important;
   color: $white !important;
 }
+
+.error-message {
+  color: $brand-danger;
+  margin-bottom: 10px;
+  margin-top: 6px;
+}

@@ -1,0 +1,35 @@
+@use "../../styles-variables.scss" as *;
+
+.login-container {
+  padding: 40px 60px;
+  min-height: 100vh;
+  background-color: $main-background;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .login-card {
+    width: 468px;
+    p-button {
+      width: 100%;
+    }
+  }
+  .violet-link {
+    color: $main-background;
+  }
+
+  .violet-link:hover {
+    color: $main-background-hover;
+  }
+}
+
+.p-button.p-button-primary {
+  background: $main-background !important;
+  color: $white !important;
+  border: none !important;
+}
+.p-button.p-button-primary:hover,
+.p-button.p-button-primary:focus {
+  background: $main-background-hover !important;
+  color: $white !important;
+}

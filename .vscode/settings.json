@@ -1,0 +1,8 @@
+{
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "editor.formatOnSave": true
+}

@@ -1,0 +1,50 @@
+<div class="login-container">
+  <img ngSrc="assets/images/logo.png" alt="MeowFacts" width="260" height="260" priority />
+  <p-card styleClass="p-4" class="login-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <p *ngIf="errorMessage" class="p-error mb-3">{{ errorMessage }}</p>
+      <div class="field p-fluid mb-4">
+        <p-floatlabel>
+          <input id="login" pInputText formControlName="login" style="width: 100%" />
+          <label for="login">Login</label>
+        </p-floatlabel>
+      </div>
+      <div class="field p-fluid mb-4">
+        <p-floatlabel>
+          <input id="password" pInputText type="password" formControlName="password" style="width: 100%" />
+          <label for="password">Password</label>
+        </p-floatlabel>
+      </div>
+      <p-button size="large" label="Sign in" type="submit" [disabled]="loginForm.invalid" [loading]="loginLoading"
+        styleClass="w-full" severity="primary" />
+      <div class="mt-4 mb-2 text-center">Don't have an account?</div>
+      <p-button size="large" [link]="true" label="Register" styleClass="w-full mt-2 violet-link"
+        (onClick)="openRegisterDialog()" />
+    </form>
+  </p-card>
+
+  <p-dialog header="Register" [(visible)]="showRegisterDialog" [modal]="true" [closable]="true" [dismissableMask]="true"
+    [style]="{width: '400px'}" (onHide)="closeRegisterDialog()">
+    <div class="mt-4">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+        <div class="field p-fluid mb-4">
+          <p-floatlabel>
+            <input id="registerEmail" pInputText formControlName="email" style="width: 100%" />
+            <label for="registerEmail">Email</label>
+          </p-floatlabel>
+        </div>
+        <div class="field p-fluid mb-4">
+          <p-floatlabel>
+            <input id="registerPassword" pInputText type="password" formControlName="password" style="width: 100%" />
+            <label for="registerPassword">Password</label>
+          </p-floatlabel>
+        </div>
+        <p-button label="Create Account" type="submit" [disabled]="registerForm.invalid" [loading]="registerLoading"
+          styleClass="w-full" severity="primary" />
+      </form>
+      <p *ngIf="errorMessage" class="p-error mb-3">{{ errorMessage }}</p>
+    </div>
+  </p-dialog>
+</div>
+
+<p-toast></p-toast>

@@ -41,6 +41,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class HomeComponent {
   public facts: Array<{ id: string; fact: string }> = [];
   public factsLoading = false;
+  private duplicateCount = 0;
 
   constructor(
     private readonly catsService: CatsService,
@@ -79,10 +80,23 @@ export class HomeComponent {
     this.factsLoading = true;
     this.catsService.getFact().subscribe({
       next: (fact) => {
-        const exists = this.facts.some((f) => f.id === fact.id);
+        const exists = this.facts.some(
+          (f) => f.id === fact.id || f.fact === fact.fact
+        );
         if (!exists) {
           this.facts.push(fact);
+          this.duplicateCount = 0;
         } else {
+          this.duplicateCount++;
+          if (this.duplicateCount > 50) {
+            this.factsLoading = false;
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'No more unique facts',
+              detail: 'Stopped loading after 50 duplicates.',
+            });
+            return;
+          }
           this.loadFact();
         }
       },

@@ -8,34 +8,36 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
   .login-card {
     width: 468px;
     p-button {
       width: 100%;
     }
   }
+
   .violet-link {
     color: $main-background;
+    &:hover {
+      color: $main-background-hover;
+    }
   }
 
-  .violet-link:hover {
-    color: $main-background-hover;
+  .p-button.p-button-primary {
+    background: $main-background !important;
+    color: $white !important;
+    border: none !important;
   }
-}
 
-.p-button.p-button-primary {
-  background: $main-background !important;
-  color: $white !important;
-  border: none !important;
-}
-.p-button.p-button-primary:hover,
-.p-button.p-button-primary:focus {
-  background: $main-background-hover !important;
-  color: $white !important;
-}
+  .p-button.p-button-primary:hover,
+  .p-button.p-button-primary:focus {
+    background: $main-background-hover !important;
+    color: $white !important;
+  }
 
-.error-message {
-  color: $brand-danger;
-  margin-bottom: 10px;
-  margin-top: 6px;
+  .error-message {
+    color: $brand-danger;
+    margin-bottom: 10px;
+    margin-top: 6px;
+  }
 }

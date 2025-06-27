@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { CardModule } from 'primeng/card';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { DialogModule } from 'primeng/dialog';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { take } from 'rxjs/operators';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+import { take } from 'rxjs/operators';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -44,18 +44,18 @@ export class LoginComponent implements OnInit {
   public registerLoading = false;
 
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly forbBuilder: FormBuilder,
     private readonly authService: AuthService,
     private readonly messageService: MessageService,
     private readonly router: Router
   ) {}
 
   public ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this.forbBuilder.group({
       login: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.registerForm = this.fb.group({
+    this.registerForm = this.forbBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
@@ -72,11 +72,17 @@ export class LoginComponent implements OnInit {
           next: (user) => {
             this.errorMessage = null;
             this.loginLoading = false;
-            this.router.navigate(['/home']);
+            this.router.navigate(['home']);
           },
           error: (err) => {
             this.errorMessage = err.message || 'Login failed';
             this.loginLoading = false;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Login Failed',
+              detail: this.errorMessage || 'Please try again.',
+              life: 3000,
+            });
           },
         });
     }

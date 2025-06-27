@@ -1,6 +1,6 @@
 # 🐾 Meow Facts
 
-![Angular](https://img.shields.io/badge/Angular-16%2B-red?logo=angular)
+![Angular](https://img.shields.io/badge/Angular-19%2B-red?logo=angular)
 ![PrimeNG](https://img.shields.io/badge/PrimeNG-UI-blueviolet?logo=prime)
 ![Firebase Auth](https://img.shields.io/badge/Firebase-Auth-yellow?logo=firebase)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -24,12 +24,6 @@ Meow Facts is a delightful web app that lets you discover fascinating facts abou
 - 🌈 **Responsive & Modern Design**
 - 🖼️ **Optimized Images** and custom branding
 - ⚡ **Error Handling**: Toast notifications for errors
-
----
-
-## 📸 Screenshots
-
-> _Add your screenshots here!_
 
 ---
 
@@ -77,7 +71,7 @@ Visit [http://localhost:4200](http://localhost:4200) 🚀
 
 ## 🛠️ Tech Stack
 
-- [Angular 16+](https://angular.io/)
+- [Angular 19+](https://angular.io/)
 - [PrimeNG](https://primeng.org/)
 - [PrimeFlex](https://www.primefaces.org/primeflex/)
 - [Firebase Auth](https://firebase.google.com/products/auth)

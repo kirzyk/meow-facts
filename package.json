@@ -7,7 +7,9 @@
     "build": "ng build",
     "build-production": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "private": true,
   "dependencies": {
@@ -39,14 +41,46 @@
     "@angular/cli": "^19.2.9",
     "@angular/compiler-cli": "^19.2.0",
     "@types/jasmine": "~5.1.0",
+    "@types/jest": "^29.5.12",
     "eslint": "^9.29.0",
     "eslint-plugin-import": "^2.32.0",
     "jasmine-core": "~5.6.0",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ts-jest": "^29.1.1",
     "typescript": "~5.7.2"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-jest.ts"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": [
+      "ts",
+      "html",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.(ts|js|html)$": [
+        "ts-jest",
+        {
+          "tsconfig": "<rootDir>/tsconfig.spec.json",
+          "stringifyContentPathRegex": ".html$"
+        }
+      ]
+    },
+    "testMatch": [
+      "**/+(*.)+(spec).+(ts|js)?(x)"
+    ],
+    "moduleNameMapper": {
+      "^src/(.*)": "<rootDir>/src/$1"
+    }
   }
 }

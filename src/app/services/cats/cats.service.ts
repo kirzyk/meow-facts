@@ -9,10 +9,10 @@ import { v4 as uuidv4 } from 'uuid';
 export class CatsService {
   private readonly apiUrl = 'https://meowfacts.herokuapp.com';
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   public getFact(): Observable<{ id: string; fact: string }> {
-    return this.http.get<{ data: string[] }>(this.apiUrl).pipe(
+    return this.httpClient.get<{ data: string[] }>(this.apiUrl).pipe(
       map((res) => {
         const fact = res.data[0];
         return { id: uuidv4(), fact };

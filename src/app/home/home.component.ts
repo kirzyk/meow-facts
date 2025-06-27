@@ -8,8 +8,8 @@ import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ScrollerModule } from 'primeng/scroller';
 import { ToastModule } from 'primeng/toast';
-import { AuthService } from '../services/auth.service';
-import { CatsService } from '../services/cats.service';
+import { CatsService } from '../services/cats/cats.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -55,7 +55,7 @@ export class HomeComponent {
 
   public logout(): void {
     this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     });
   }
 

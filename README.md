@@ -44,9 +44,8 @@ npm install
 
 ### 3. Configure Firebase
 
-- Create a Firebase project
-- Enable Email/Password authentication
-- Add your Firebase config to `src/environments/environment.ts`:
+- The project is already configured with a working Firebase setup for demo purposes.
+- If you want to use your own Firebase project, simply update the config in `src/environments/environment.ts`:
 
 ```ts
 export const environment = {

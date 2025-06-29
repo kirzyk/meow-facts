@@ -54,11 +54,11 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {
     this.loginForm = this.forbBuilder.group({
       login: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
     this.registerForm = this.forbBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 

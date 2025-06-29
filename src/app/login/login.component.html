@@ -14,11 +14,13 @@
           <label for="password">Password</label>
         </p-floatlabel>
       </div>
-      <p-button size="large" label="Login" type="submit" [disabled]="loginForm.invalid" [loading]="loginLoading"
+      <div class="text-center">
+        <p-button size="large" label="Login" type="submit" [disabled]="loginForm.invalid" [loading]="loginLoading"
         styleClass="w-full" severity="primary" />
-      <div class="mt-4 mb-2 text-center">Don't have an account?</div>
-      <p-button size="large" [link]="true" label="Register" styleClass="w-full mt-2 violet-link"
+      <div class="mt-4 mb-2">Don't have an account?</div>
+      <p-button size="small" [link]="true" label="Register" styleClass="mt-2 violet-link"
         (onClick)="openRegisterDialog()" />
+      </div>
     </form>
   </p-card>
 

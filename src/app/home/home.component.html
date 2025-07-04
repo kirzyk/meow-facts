@@ -6,9 +6,15 @@
   </div>
 
   <div class="scroll-container" (scroll)="onScroll(scrollContainer)" #scrollContainer>
+    <div *ngIf="factsLoading && facts.length === 0" class="initial-loader">
+      <p-progressSpinner strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
+      <p>Loading cat facts...</p>
+    </div>
+
     <p-card *ngFor="let item of facts" styleClass="mb-2" [@factAnimation]>
       {{ item.fact }}
     </p-card>
   </div>
 
   <p-toast></p-toast>
+</div>
